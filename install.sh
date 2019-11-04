@@ -15,7 +15,7 @@ ROOTSQLPWD=$TEMPRANDSTR
 PMABLOWFISH=$TEMPRANDSTR
 
 # Define short code
-GITRAW=https://raw.githubusercontent.com/tujuhion/openlitespeed-centos-autoinstall/master
+GITRAW=https://raw.githubusercontent.com/wimil/openlitespeed-centos-autoinstall/master
 LSWSDIR=/usr/local/lsws
 
 # Update
@@ -25,20 +25,17 @@ wget -O /etc/yum.repos.d/MariaDB.repo $GITRAW/repo/MariaDB.repo
 rpm -ivh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
 yum -y update
 
-# Install Proftpd
-yum -y install proftpd
-sed -i "s/ProFTPD server/$HOSTNAME/g" /etc/proftpd.conf
 
 #Install Openlitespeed & MariaDB
-mkdir /home/defdomain
-mkdir /home/defdomain/html
-mkdir /home/defdomain/logs
+mkdir /home/www/defdomain
+mkdir /home/www/defdomain/html
+mkdir /home/www/defdomain/logs
 yum -y install openlitespeed
 yum -y install MariaDB-server MariaDB-client
 
-# Install PHP 72
-yum -y install lsphp72 lsphp72-common lsphp72-mysqlnd lsphp72-process lsphp72-gd lsphp72-mbstring \
-lsphp72-mcrypt lsphp72-opcache lsphp72-bcmath lsphp72-pdo lsphp72-xml lsphp72-json lsphp72-zip lsphp72-xmlrpc lsphp72-pecl-mcrypt
+# Install PHP 73
+yum -y install lsphp73 lsphp73-common lsphp73-mysqlnd lsphp73-process lsphp73-gd lsphp73-mbstring \
+lsphp73-mcrypt lsphp73-opcache lsphp73-bcmath lsphp73-pdo lsphp73-xml lsphp73-json lsphp73-zip lsphp73-xmlrpc lsphp73-pecl-mcrypt
 
 #Setting Up
 touch $LSWSDIR/domain
@@ -130,7 +127,6 @@ $ROOTSQLPWD
 EOT
 
 # Create PHP symlink
-ln -s /usr/local/lsws/lsphp72/bin/lsphp /usr/bin/php
+ln -s /usr/local/lsws/lsphp73/bin/lsphp /usr/bin/php
 
-systemctl enable proftpd
 systemctl enable mariadb
