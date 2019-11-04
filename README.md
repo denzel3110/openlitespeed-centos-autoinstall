@@ -9,9 +9,8 @@ bash <( curl -k https://raw.githubusercontent.com/wimil/openlitespeed-centos-aut
 
 This scripts will install 
 - Openlitespeed web server
-- ProFTPD
-- MariaDB 10.2
-- PHP 7.2
+- MariaDB 10.4.8
+- PHP 7.3
 - PHPMyAdmin 4.8.2
 - Simple Scripts to start|stop|restart|reload openlitespeed web server
 - Simple Scripts to create vhost
